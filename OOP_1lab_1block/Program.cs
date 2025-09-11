@@ -7,55 +7,59 @@ namespace OOP_1lab_1block
    // нулів.
    class NNumber
     {
-        private byte[] figs { get; set; }
+        private byte[] Figs { get; set; }
         public NNumber(int n)
         {
             if (n < 1) throw new ArgumentException("Число повинно бути натуральним");
             string num = n.ToString();
-            figs = new byte[num.Length];
+            Figs = new byte[num.Length];
             for(int i = 0; i < num.Length; i++)
             {
-                figs[i] = (byte)(num[i] - '0');
+                Figs[i] = (byte)(num[i] - '0');
             }
         }
-        public int Length { get => figs.Length; }
+        public int Length { get => Figs.Length; }
         public byte this[int i]
         {
             get
             {
                 if(i >= 0 && i < this.Length)
-                    return figs[i];
+                    return Figs[i];
                 return 0;
             }
             set
             {
                 if(i >= 0 && i < this.Length)
-                    figs[i] = value;
+                    Figs[i] = value;
             }
         }
-        public void Reverse() => Array.Reverse(figs);
+        public void Reverse() => Array.Reverse(Figs);
         public void ReverseNormalize()// обрізає ведучі нулі.
         {
-            int end = figs.Length - 1;
-            while (end > 0 && figs[end] == 0)
+            int end = Figs.Length - 1;
+            while (end > 0 && Figs[end] == 0)
                 end--;
             byte[] newDigits = new byte[end + 1];
             for (int i = 0; i <= end; i++)
             {
-                newDigits[i] = figs[end - i];
+                newDigits[i] = Figs[end - i];
             }
-            figs = newDigits;
+            Figs = newDigits;
         }
-        public int CountZeros() => figs.Count(x => x == 0);
-        public override string ToString() => string.Concat(figs);
+        public int CountZeros() => Figs.Count(x => x == 0);
+        public override string ToString() => string.Concat(Figs);
     }    
     internal class Program
     {
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
+            Console.WriteLine("Виберіть режим введенння: \n1 - Вручну \n2 - Random ");
+            int choice = int.Parse(Console.ReadLine());
+            if (choice == 1)
+                Console.Write("Введіть число: ");
 
-            NNumber num = new NNumber(102030);
+            NNumber num = new NNumber(choice == 1 ? int.Parse(Console.ReadLine()) : new Random().Next(1, 100000000));
 
             Console.WriteLine($"Число: {num}");         // 102030
 
