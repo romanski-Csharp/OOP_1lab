@@ -2,10 +2,10 @@
 
 namespace OOP_1lab_1block
 {
-//12. Реалізувати клас, що представляє натуральне число. Передбачити індексатор для
-   // доступу до цифр цього числа, методи обернення числа, та підрахунку кількості
-   // нулів.
-   class NNumber
+ //12. Реалізувати клас, що представляє натуральне число. Передбачити індексатор для
+    // доступу до цифр цього числа, методи обернення числа, та підрахунку кількості
+    // нулів.
+    class NNumber
     {
         private byte[] Figs { get; set; }
         public NNumber(int n)
@@ -34,7 +34,7 @@ namespace OOP_1lab_1block
             }
         }
         public void Reverse() => Array.Reverse(Figs);
-        public void ReverseNormalize()// обрізає ведучі нулі.
+        public void ReverseNormalize() // обрізає ведучі нулі.
         {
             int end = Figs.Length - 1;
             while (end > 0 && Figs[end] == 0)
@@ -61,17 +61,20 @@ namespace OOP_1lab_1block
 
             NNumber num = new NNumber(choice == 1 ? int.Parse(Console.ReadLine()) : new Random().Next(1, 100000000));
 
-            Console.WriteLine($"Число: {num}");         // 102030
+            Console.WriteLine($"Число: {num}");         
 
-            Console.WriteLine($"Друга цифра: {num[1]}"); // 0
+            Console.WriteLine($"Замінимо, до-прикладу, другу цифру: {num[1]}"); 
 
-            num[1] = 9;// замінимо другу цифру
-            Console.WriteLine($"Після зміни: {num}");   // 192030
+            num[1] = 9;
+            Console.WriteLine($"Після зміни: {num}");   
+            Console.WriteLine($"Кількість нулів: {num.CountZeros()}"); 
 
             num.Reverse();
-            Console.WriteLine($"Обернене: {num}");      // 030291
+            Console.WriteLine($"Обернене: {num}");      
+            num.Reverse();
 
-            Console.WriteLine($"Кількість нулів: {num.CountZeros()}"); // 2
+            num.ReverseNormalize();
+            Console.WriteLine($"Обернене обрізавши ведучі нулі: {num}");
         }
     }
 }
